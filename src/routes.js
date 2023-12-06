@@ -1,10 +1,20 @@
 import { Router } from "express";
 
+import auth from "./app/middlewares/auth"
+
+import sessions from "./app/controllers/SessionsController";
 import customers from "./app/controllers/CustomersController";
 import contacts from "./app/controllers/ContactsController";
 import users from "./app/controllers/UsersController";
 
 const routes = new Router();
+
+// Sessions
+
+routes.post("/sessions", sessions.create);
+
+// Acess controller
+routes.use(auth);
 
 // Customres
 routes.get("/customers", customers.index);
