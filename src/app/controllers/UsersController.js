@@ -115,9 +115,9 @@ class UsersController {
           if (!(await schema.isValid(req.body))) {
             return res.status(400).json({error: "Error on validate schema"})
           }
-          const {id, name, email, createdAt, updatedAt} = await User.create(req.body);
+          const {id, name, email, fileId, createdAt, updatedAt} = await User.create(req.body);
       
-          return res.status(201).json({id, name, email, createdAt, updatedAt});
+          return res.status(201).json({id, name, email, fileId, createdAt, updatedAt});
     }
 
     async update(req, res){
@@ -146,9 +146,9 @@ class UsersController {
             return res.status(401).json({error:"User password not match."});
           }
 
-          const {id, name, email, createdAt, updatedAt} = await User.update(req.body);
+          const {id, name, email, fileId, createdAt, updatedAt} = await User.update(req.body);
       
-          return res.status(201).json({id, name, email, createdAt, updatedAt});
+          return res.status(201).json({id, name, email, fileId, createdAt, updatedAt});
     }
     
     async destroy(req, res){
