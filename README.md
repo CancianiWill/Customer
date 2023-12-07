@@ -1,2 +1,3 @@
 # Customer
-Aprendendo usar Sequelize
+Aprendendo usar Express, Sequelize e algumas outras libs
+
