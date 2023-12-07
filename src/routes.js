@@ -1,7 +1,8 @@
 import { Router } from "express";
 import multer from "multer";
-import multerConfig from "./config/multer"
-import auth from "./app/middlewares/auth"
+import multerConfig from "./config/multer";
+
+import auth from "./app/middlewares/auth";
 
 import sessions from "./app/controllers/SessionsController";
 import customers from "./app/controllers/CustomersController";
@@ -13,13 +14,12 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 // Sessions
-
 routes.post("/sessions", sessions.create);
 
-// Acess controller
+// Controla o acesso a partir desse ponto
 routes.use(auth);
 
-// Customres
+// Customers
 routes.get("/customers", customers.index);
 routes.get("/customers/:id", customers.show);
 routes.post("/customers", customers.create);
@@ -29,7 +29,7 @@ routes.delete("/customers/:id", customers.destroy);
 // Contacts
 routes.get("/customers/:customerId/contacts", contacts.index);
 routes.get("/customers/:customerId/contacts/:id", contacts.show);
-routes.post("/customerscustomerId/contacts", contacts.create);
+routes.post("/customers/:customerId/contacts", contacts.create);
 routes.put("/customers/:customerId/contacts/:id", contacts.update);
 routes.delete("/customers/:customerId/contacts/:id", contacts.destroy);
 
@@ -40,7 +40,7 @@ routes.post("/users", users.create);
 routes.put("/users/:id", users.update);
 routes.delete("/users/:id", users.destroy);
 
-// Files up
-routes.post("/files",upload.single("file"), files.create);
+// Files
+routes.post("/files", upload.single("file"), files.create);
 
 export default routes;

@@ -1,23 +1,16 @@
 module.exports = {
   env: {
-    es2021: true,
+    es6: true,
     node: true,
   },
   extends: ["airbnb-base", "prettier"],
   plugins: ["prettier"],
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: [".eslintrc.{js,cjs}"],
-      parserOptions: {
-        sourceType: "script",
-      },
-    },
-  ],
+  globals: {
+    Atomics: "readonly",
+    SharedArrayBuffer: "readonly",
+  },
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 2018,
     sourceType: "module",
   },
   rules: {
@@ -26,6 +19,6 @@ module.exports = {
     "no-param-reassign": "off",
     camelcase: "off",
     "no-unused-vars": ["error", { argsIgnorePattern: "next" }],
-    "linebreak-style": ["error", "windows"],
+    "no-console": ["error", { allow: ["warn", "error", "log"] }],
   },
 };

@@ -1,15 +1,13 @@
-import { response } from "express";
-import File from "../models/File"
+import File from "../models/File";
 
 class FilesController {
-    async create (req, res){
-        const {originalname: name, filename: path} = req.file;
+  async create(req, res) {
+    const { originalname: name, filename: path } = req.file;
 
-        const file = await File.create({name, path});
+    const file = await File.create({ name, path });
 
-
-        res.json(file);
-    }
+    res.json(file);
+  }
 }
 
 export default new FilesController();
