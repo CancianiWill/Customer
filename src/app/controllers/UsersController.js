@@ -5,6 +5,9 @@ import { parseISO } from "date-fns";
 import User from "../models/User";
 import Mail from "../../lib/Mail";
 
+import Queue from "../../lib/Queue";
+import DummyJob from "../jobs/DummyJob";
+
 class UsersController {
   async index(req, res) {
     const {
@@ -142,6 +145,8 @@ class UsersController {
       subject: "Bem vindo(a)",
       text: `Olá ${name}, Bem-vindo(a) ao nosso sistema`,
     });
+
+    await Queue.add(DummyJob.key, { message: "Hello" });
 
     return res
       .status(201)
