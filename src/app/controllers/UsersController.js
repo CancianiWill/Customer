@@ -140,8 +140,8 @@ class UsersController {
     Mail.send({
       to: email,
       subject: "Bem vindo(a)",
-      text: `Olá ${name}, Bem-vindo(a) ao nosso sistema`
-    })
+      text: `Olá ${name}, Bem-vindo(a) ao nosso sistema`,
+    });
 
     return res
       .status(201)
